@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>个人中心</title>
+<link href="http://127.0.0.1:86/resource/css/bootstrap.min.css"
+	rel="stylesheet" />
+<script type="text/javascript"
+	src="http://127.0.0.1:86/resource/js/jquery.min.js"></script>
+<script type="text/javascript"
+	src="http://127.0.0.1:86/resource/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" type="text/css"
+	href="http://127.0.0.1:86/resource/My97DatePicker/skin/WdatePicker.css">
+<script type="text/javascript"
+	src="http://127.0.0.1:86/resource/My97DatePicker/WdatePicker.js"></script>
+
+<!-- 输入过滤 -->
+<script
+	src="http://127.0.0.1:86/resource/jquery-validation-1.17.0/lib/jquery.js"></script>
+<script
+	src="http://127.0.0.1:86/resource/jquery-validation-1.17.0/dist/jquery.validate.js"></script>
+<script
+	src="http://127.0.0.1:86/resource/jquery-validation-1.17.0/dist/localization/messages_zh.js"></script>
+
+<script type="text/javascript">
+
+
+</script>
+<style>
+.error {
+	color: red;
+}
+</style>
+
+</head>
+<body>
+	<script th:inline="javascript">
+	//此页面用来提示添加，修改，删除信息的成功或者失败的信息
+	var info=[[${info}]];
+	alert(info);//提示信息，错误or成功
+	//跳转到user_info.jsp查询页面，后面会修改为servlet
+	window.location="/emp/atten";
+</script>
+</body>
+</html>

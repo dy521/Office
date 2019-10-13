@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper   
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.office.mapper.OfficeMapper">
+
+
+	<!--List<Office> findList(Office office); -->
+	<select id="findList" parameterType="office" resultType="office">
+		SELECT
+		a.*,b.name as empname
+		FROM office a,emp b where a.empid=b.id
+		<if test="name !=null and name != ''">
+			and a.name like '%${name}%'
+		</if>
+		<if test="status !=null and status != ''">
+			and a.status = #{status}
+		</if>
+		<if test="empid !=null">
+			and a.empid = #{empid}
+		</if>
+	</select>
+
+	<!--Integer delete(@Param("id") Integer id); -->
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM office WHERE id = #{id}
+	</delete>
+
+	<!--office findById(@Param("id") Integer id); -->
+	<select id="findById" parameterType="Integer"
+		resultType="office">
+		SELECT
+		*
+		FROM office where id=#{id}
+	</select>
+
+
+	<!--Integer insert(office hotelType); -->
+	<insert id="insert" parameterType="office">
+		INSERT INTO office (name,
+		empid,
+		create_time,
+		status,
+		reciver_str,
+		emp_str,
+		path,
+		content
+		)
+		VALUES (#{name},
+		#{empid},
+		#{create_time},
+		#{status},
+		#{reciver_str},
+		#{emp_str},
+		#{path},
+		#{content}
+		)
+	</insert>
+
+
+
+	<!-- Integer update(lend hotelType); -->
+	<update id="update" parameterType="office">
+		UPDATE office
+		<set>
+			<if test="status != null">status=#{status},</if>
+			<if test="reciver_str != null">reciver_str=#{reciver_str},</if>
+			<if test="emp_str != null">emp_str=#{emp_str}</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+
+
+
+</mapper>

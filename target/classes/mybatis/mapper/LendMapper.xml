@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper   
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.office.mapper.LendMapper">
+
+
+	<!--List<Lend> findList(Lend lend); -->
+	<select id="findList" parameterType="lend" resultType="lend">
+		SELECT
+		a.*,b.name as empname,c.name as objname
+		FROM lend a,emp b,obj c
+		where a.empid=b.id and a.objid=c.id
+		<if test="empid !=null">
+			and a.empid = #{empid}
+		</if>
+	</select>
+
+	<!--Integer delete(@Param("id") Integer id); -->
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM lend WHERE id = #{id}
+	</delete>
+
+	<!--lend findById(@Param("id") Integer id); -->
+	<select id="findById" parameterType="Integer" resultType="lend">
+		SELECT
+		*
+		FROM lend where id=#{id}
+	</select>
+
+
+	<!--Integer insert(lend hotelType); -->
+	<insert id="insert" parameterType="lend">
+		INSERT INTO lend (empid,
+		objid,
+		time
+		)
+		VALUES (#{empid},
+		#{objid},
+		#{time}
+		)
+	</insert>
+
+
+
+	<!-- Integer update(lend hotelType); -->
+	<update id="update" parameterType="lend">
+		UPDATE lend
+		<set>
+			<if test="empid != null">empid=#{empid},</if>
+			<if test="objid != null">objid=#{objid},</if>
+			<if test="time != null">time=#{time}</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+
+
+
+</mapper>

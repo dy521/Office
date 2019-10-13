@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<base href="<%=basePath %>" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title></title>
+<link th:href="@{/resource/css/bootstrap.min.css}" rel="stylesheet" />
+<script type="text/javascript" th:src="@{/resource/js/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/resource/js/bootstrap.min.js}"></script>
+
+<!-- 输入过滤 -->
+<script th:src="@{/resource/jquery-validation-1.17.0/lib/jquery.js}"></script>
+<script
+	th:src="@{/resource/jquery-validation-1.17.0/dist/jquery.validate.js}"></script>
+<script
+	th:src="@{/resource/jquery-validation-1.17.0/dist/localization/messages_zh.js}"></script>
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/resource/My97DatePicker/skin/WdatePicker.css}">
+<script type="text/javascript"
+	th:src="@{/resource/My97DatePicker/WdatePicker.js}"></script>
+
+
+<script type="text/javascript">
+
+
+</script>
+<style>
+.error {
+	color: red;
+}
+</style>
+
+</head>
+<body>
+	<div>
+		<ul class="breadcrumb" style="margin: 0px;">
+			<li>公告</li>
+			<li>公告添加</li>
+		</ul>
+	</div>
+	<form action="/admin/addMsg" id="commentForm"
+		enctype="multipart/form-data" class="form-horizontal" method="post">
+		<h5 class="page-header alert-info"
+			style="margin: 0px; padding: 10px; margin-bottom: 10px;">基本信息</h5>
+		<!-- 开始1 -->
+		<div class="row">
+			<div class="col-xs-5">
+				<div class="form-group ">
+					<label class="col-xs-3 control-label">标题</label>
+					<div class="col-xs-9 ">
+						<input type="text" required name="name" class="form-control" />
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-5">
+				<div class="form-group ">
+					<label class="col-xs-3 control-label">内容</label>
+					<div class="col-xs-9 ">
+						<textarea required name="content" class="form-control">
+						 </textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--结束1 -->
+
+
+		<!-- 开始1 -->
+		<div class="row">
+			<div class="col-xs-5">
+				<div class="form-group ">
+					<label class="col-xs-3 control-label">文件</label>
+					<div class="col-xs-9 ">
+						<input type="file" required name="upload" class="form-control" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--结束1 -->
+
+
+		<div class="row">
+			<div class="col-xs-3 col-xs-offset-4">
+				<input type="submit" class="btn btn-success" value="保存" /> <input
+					type="reset" class="btn btn-danger" value="重置信息" />
+			</div>
+
+		</div>
+
+	</form>
+</body>
+</html>

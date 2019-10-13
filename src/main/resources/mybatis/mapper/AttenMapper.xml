@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper   
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.office.mapper.AttenMapper">
+
+
+	<!--List<Atten> findList(Atten atten); -->
+	<select id="findList" parameterType="atten" resultType="atten">
+		SELECT
+		a.*,b.name as empname
+		FROM atten a,emp b where a.empid=b.id
+		<if test="empid !=null">
+			and a.empid = #{empid}
+		</if>
+	</select>
+
+	<!--Integer delete(@Param("id") Integer id); -->
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM atten WHERE id = #{id}
+	</delete>
+
+	<!--atten findById(@Param("id") Integer id); -->
+	<select id="findById" parameterType="Integer" resultType="atten">
+		SELECT
+		*
+		FROM atten where id=#{id}
+	</select>
+
+
+	<!-- Atten findByUpTime(@Param("up_time") String up_time,@Param("empid") 
+		Integer empid); -->
+	<select id="findByUpTime" resultType="atten">
+		SELECT
+		*
+		FROM atten where
+		up_time=#{up_time} and empid=#{empid}
+	</select>
+
+
+
+	<!--Integer insert(atten hotelType); -->
+	<insert id="insert" parameterType="atten">
+		INSERT INTO atten (
+		empid,
+		up_time,
+		down_time,
+		is_use
+		)
+		VALUES (
+		#{empid},
+		#{up_time},
+		#{down_time},
+		#{is_use}
+		)
+	</insert>
+
+
+
+	<!-- Integer update(lend hotelType); -->
+	<update id="update" parameterType="atten">
+		UPDATE atten
+		<set>
+			<if test="down_time != null">down_time=#{down_time},</if>
+			<if test="is_use != null">is_use=#{is_use}</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+
+
+
+</mapper>

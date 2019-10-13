@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper   
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.office.mapper.ObjMapper">
+
+
+	<!--List<Obj> findList(Obj obj); -->
+	<select id="findList" parameterType="obj" resultType="obj">
+		SELECT
+		*
+		FROM obj where 1=1
+		<if test="name !=null and name != ''">
+			and name like '%${name}%'
+		</if>
+	</select>
+
+	<!--Integer delete(@Param("id") Integer id); -->
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM obj WHERE id = #{id}
+	</delete>
+
+	<!--obj findById(@Param("id") Integer id); -->
+	<select id="findById" parameterType="Integer" resultType="obj">
+		SELECT
+		*
+		FROM obj where id=#{id}
+	</select>
+
+
+	<!--Integer insert(obj hotelType); -->
+	<insert id="insert" parameterType="obj">
+		INSERT INTO obj (name,
+		time,
+		status
+		)
+		VALUES (#{name},
+		#{time},
+		#{status}
+		)
+	</insert>
+
+
+	<!-- Integer update(lend hotelType); -->
+	<update id="update" parameterType="obj">
+		UPDATE obj
+		<set>
+			<if test="name != null">name=#{name},</if>
+			<if test="time != null">time=#{time},</if>
+			<if test="status != null">status=#{status}</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+
+
+
+</mapper>

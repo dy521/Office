@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE configuration   
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+
+
+
+	<!--在mybatis默认提供的别名的基础上,我们还可以自定义别名引用 -->
+	<typeAliases>
+		<!--自定义user对象的别名 -->
+		<!-- <typeAlias type="com.tz.mybatis.sysmanage.entity.User" alias="user"/> -->
+		<!-- Admin admin -->
+		<!-- 批量定义别名 -->
+		<package name="com.office.entity" />
+
+	</typeAliases>
+
+
+
+
+
+
+
+</configuration>

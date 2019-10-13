@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="<%=basePath %>" />
+<title>首页</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+
+<link href="/resource/assets/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="/resource/assets/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/resource/assets/css/ace.min.css" />
+<link rel="stylesheet" href="/resource/assets/css/ace-rtl.min.css" />
+<link rel="stylesheet" href="/resource/assets/css/ace-skins.min.css" />
+<script type="text/javascript"
+	src="/resource/assets/js/ace-extra.min.js"></script>
+<script type="text/javascript" src="/resource/assets/jquery.min.js"></script>
+
+</head>
+<body>
+	<div class="navbar navbar-default" id="navbar">
+		<script type="text/javascript">
+			try {
+				ace.settings.check('navbar', 'fixed')
+			} catch (e) {
+			}
+		</script>
+
+		<div class="navbar-container" id="navbar-container">
+			<div class="navbar-header pull-left">
+				<a class="navbar-brand"> <small> <i class="icon-leaf"></i>
+						雷速办公系统
+				</small>
+				</a>
+				<!-- /.brand -->
+			</div>
+			<!-- /.navbar-header -->
+
+			<div class="navbar-header pull-right" role="navigation">
+				<ul class="nav ace-nav">
+
+
+					<li class="light-blue"><a data-toggle="dropdown" href="#"
+						class="dropdown-toggle"> <span
+							th:if=" ${session.admin !=null}" class="user-info"> 欢迎管理员,<small
+								th:text="${session.admin.username}"></small>
+						</span> <span th:if=" ${session.emp !=null}" class="user-info">
+								欢迎员工,<small th:text="${session.emp.username}"></small>
+						</span> <span th:if=" ${session.mag !=null}" class="user-info">
+								欢迎经理,<small th:text="${session.mag.username}"></small>
+						</span> <i class="icon-caret-down"></i>
+					</a>
+						<ul
+							class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+
+
+
+							<li class="divider"></li>
+
+
+
+							<li><a href="/loginOut"> <i class="icon-off"></i> 退出
+							</a></li>
+
+						</ul></li>
+				</ul>
+				<!-- /.ace-nav -->
+
+			</div>
+			<!-- /.navbar-header -->
+		</div>
+		<!-- /.container -->
+	</div>
+
+	<div class="main-container" id="main-container">
+		<script type="text/javascript">
+			try {
+				ace.settings.check('main-container', 'fixed')
+			} catch (e) {
+			}
+		</script>
+
+		<div class="main-container-inner">
+
+
+			<div class="sidebar" id="sidebar">
+				<script type="text/javascript">
+					try {
+						ace.settings.check('sidebar', 'fixed')
+					} catch (e) {
+					}
+				</script>
+
+				<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+					<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+					</div>
+
+				</div>
+				<!-- #sidebar-shortcuts -->
+
+				<ul class="nav nav-list">
+
+
+					<li th:if=" ${session.admin !=null}"><a href="/admin/dept"
+						target="mainframe" class="dropdown-toggle"> <i
+							class="icon-desktop"></i> <span class="menu-text">部门管理 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a></li>
+					<li th:if=" ${session.admin !=null}"><a href="/admin/emp"
+						target="mainframe" class="dropdown-toggle"> <i
+							class="icon-desktop"></i> <span class="menu-text">员工管理 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a></li>
+					<li th:if=" ${session.admin !=null}"><a href="/admin/msg"
+						target="mainframe" class="dropdown-toggle"> <i
+							class="icon-desktop"></i> <span class="menu-text">公告管理 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a></li>
+					<li th:if=" ${session.admin !=null}"><a href="/admin/obj"
+						target="mainframe" class="dropdown-toggle"> <i
+							class="icon-desktop"></i> <span class="menu-text">物品管理 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a></li>
+					<li th:if=" ${session.admin !=null}"><a href="/admin/office"
+						target="mainframe" class="dropdown-toggle"> <i
+							class="icon-desktop"></i> <span class="menu-text">审批公文 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a></li>
+					<li th:if=" ${session.admin !=null}"><a href="/gotoChart"
+						target="mainframe" class="dropdown-toggle"> <i
+							class="icon-desktop"></i> <span class="menu-text">工资统计 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a></li>
+
+
+
+
+					<li th:if=" ${session.emp !=null}"><a href="/emp/office"
+						target="mainframe" class="dropdown-toggle"> <i
+							class="icon-desktop"></i> <span class="menu-text">公文管理 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a></li>
+					<li th:if=" ${session.emp !=null}"><a href="/emp/atten"
+						target="mainframe" class="dropdown-toggle"> <i
+							class="icon-desktop"></i> <span class="menu-text">考勤管理 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a></li>
+					<li th:if=" ${session.emp !=null}"><a href="/emp/obj"
+						target="mainframe" class="dropdown-toggle"> <i
+							class="icon-desktop"></i> <span class="menu-text">物品查看 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a></li>
+					<li th:if=" ${session.emp !=null}"><a href="/emp/lend"
+						target="mainframe" class="dropdown-toggle"> <i
+							class="icon-desktop"></i> <span class="menu-text">已借物品 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a></li>
+					<li th:if=" ${session.emp !=null}"><a href="/emp/gotoAddEmail"
+						target="mainframe" class="dropdown-toggle"> <i
+							class="icon-desktop"></i> <span class="menu-text">邮件发送 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a></li>
+
+
+
+
+
+					<li th:if=" ${session.mag !=null}"><a href="/mag/atten"
+						target="mainframe" class="dropdown-toggle"> <i
+							class="icon-desktop"></i> <span class="menu-text">考勤管理 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a></li>
+					<li th:if=" ${session.mag !=null}"><a href="/mag/office"
+						target="mainframe" class="dropdown-toggle"> <i
+							class="icon-desktop"></i> <span class="menu-text">审批公文 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a></li>
+
+
+
+				</ul>
+				<!-- /.nav-list NewGuide-->
+
+
+
+				<script type="text/javascript">
+					try {
+						ace.settings.check('sidebar', 'collapsed')
+					} catch (e) {
+					}
+				</script>
+			</div>
+
+			<div class="main-content" id="mains" th:if=" ${session.admin !=null}">
+				<iframe id="mainframe" name="mainframe" src="/admin/dept"
+					style="width: 100%; border: 0px;"> </iframe>
+			</div>
+			<div class="main-content" id="mains" th:if=" ${session.emp !=null}">
+				<iframe id="mainframe" name="mainframe" src="/emp/office"
+					style="width: 100%; border: 0px;"> </iframe>
+			</div>
+			<div class="main-content" id="mains" th:if=" ${session.mag !=null}">
+				<iframe id="mainframe" name="mainframe" src="/mag/atten"
+					style="width: 100%; border: 0px;"> </iframe>
+			</div>
+
+			<script type="text/javascript">
+				var height = jQuery(window).height() - 50;
+				jQuery("#mainframe").attr("height", "" + height + "px;");
+			</script>
+
+
+			<!-- /#ace-settings-container -->
+		</div>
+
+	</div>
+	<!-- /.main-container -->
+	<!-- basic scripts -->
+
+
+
+
+	<script type="text/javascript">
+		if ("ontouchend" in document)
+			document
+					.write("<script src='/resource/assets/js/jquery.mobile.custom.min.js'>"
+							+ "<"+"script>");
+	</script>
+	<script src="/resource/assets/js/bootstrap.min.js"></script>
+	<script src="/resource/assets/js/typeahead-bs2.min.js"></script>
+
+	<!-- page specific plugin scripts -->
+
+	<!--[if lte IE 8]>
+		  <script src="resource/assets/js/excanvas.min.js"></script>
+		<![endif]-->
+
+	<script src="/resource/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="/resource/assets/js/jquery.ui.touch-punch.min.js"></script>
+	<script src="/resource/assets/js/jquery.slimscroll.min.js"></script>
+	<script src="/resource/assets/js/jquery.easy-pie-chart.min.js"></script>
+	<script src="/resource/assets/js/jquery.sparkline.min.js"></script>
+	<script src="/resource/assets/js/flot/jquery.flot.min.js"></script>
+	<script src="/resource/assets/js/flot/jquery.flot.pie.min.js"></script>
+	<script src="/resource/assets/js/flot/jquery.flot.resize.min.js"></script>
+
+	<!-- ace scripts -->
+
+	<script src="/resource/assets/js/ace-elements.min.js"></script>
+	<script src="/resource/assets/js/ace.min.js"></script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper   
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.office.mapper.MsgMapper">
+
+
+	<!--List<Msg> findList(Msg msg); -->
+	<select id="findList" parameterType="msg" resultType="msg">
+		SELECT
+		*
+		FROM msg where 1=1
+		<if test="name !=null and name != ''">
+			and name like '%${name}%'
+		</if>
+	</select>
+
+	<!--Integer delete(@Param("id") Integer id); -->
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM msg WHERE id = #{id}
+	</delete>
+
+	<!--msg findById(@Param("id") Integer id); -->
+	<select id="findById" parameterType="Integer" resultType="msg">
+		SELECT
+		*
+		FROM msg where id=#{id}
+	</select>
+
+
+	<!--Integer insert(msg hotelType); -->
+	<insert id="insert" parameterType="msg">
+		INSERT INTO msg (name,
+		content,
+		create_time,
+		path
+		)
+		VALUES (#{name},
+		#{content},
+		#{create_time},
+		#{path}
+		)
+	</insert>
+
+
+
+	<!-- Integer update(lend hotelType); -->
+	<update id="update" parameterType="msg">
+		UPDATE msg
+		<set>
+			<if test="name != null">name=#{name},</if>
+			<if test="content != null">content=#{content},</if>
+			<if test="create_time != null">create_time=#{create_time},</if>
+			<if test="path != null">path=#{path}</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+
+
+
+</mapper>

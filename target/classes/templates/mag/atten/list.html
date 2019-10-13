@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<base href="<%=basePath %>" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title></title>
+<link href="/resource/css/bootstrap.min.css" rel="stylesheet" />
+<script type="text/javascript" src="/resource/js/jquery.min.js"></script>
+<script type="text/javascript" src="/resource/js/bootstrap.min.js"></script>
+
+
+
+<script type="text/javascript">
+function del(){
+	var atten = "您确认要删除此记录吗？";
+	if(confirm(atten) == true)
+		return true;
+	else
+		return false;
+}
+</script>
+</head>
+<body>
+	<div>
+		<ul class="breadcrumb" style="margin: 0px;">
+			<li>考勤</li>
+			<li>考勤查询</li>
+		</ul>
+	</div>
+	<form action="/mag/atten" method="post" class="form-inline">
+		<div class="row alert alert-info" style="margin: 0px; padding: 5px;">
+			<a href="/mag/addAtten" class="btn btn-success"> 上班打卡 </a> <a
+				href="/mag/editAtten" class="btn btn-danger"> 下班打卡 </a> <a
+				href="/emp/downAtten" class="btn btn-danger"> 下载考勤 </a>
+		</div>
+		<div class="row" style="padding: 15px;">
+
+			<table class="table table-hover table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>打卡员工</th>
+						<th>上班打卡</th>
+						<th>下班打卡</th>
+						<th>是否有效</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="pa,paStat : ${pageInfo.list}">
+						<td th:text="${pa.empname}"></td>
+						<td th:text="${pa.up_time}"></td>
+						<td th:text="${pa.down_time}"></td>
+						<td th:text="${pa.is_use}"></td>
+
+
+					</tr>
+				</tbody>
+			</table>
+
+
+
+
+
+			<table align="center">
+				<tr>
+					<td width="120px">第<a th:text="${pageNum}"></a>页/共<a
+						th:text="${totalPages}"></a>页
+					</td>
+
+					<td width="30px"><a
+						th:href="@{/mag/atten(pageNum=${firstPage})}">首页</a></td>
+					<td width="60px" th:switch="${pageNum}" style="text-align: center;">
+						<p th:case="1">
+							<a th:href="@{/mag/atten(pageNum=${firstPage})}">上一页</a>
+						</p>
+						<p th:case="*">
+							<a th:href="@{/mag/atten(pageNum=${pageNum-1})}">上一页</a>
+						</p>
+					</td>
+					<td width="60px" th:switch="${pageNum}" style="text-align: center;">
+						<p th:case="${totalPages}">
+							<a th:href="@{/mag/atten(pageNum=${totalPages})}">下一页</a>
+						</p>
+						<p th:case="*">
+							<a th:href="@{/mag/atten(pageNum=${pageNum+1})}">下一页</a>
+						</p>
+					</td>
+					<td width="60px"><a
+						th:href="@{/mag/atten(pageNum=${totalPages})}">尾页</a></td>
+				</tr>
+			</table>
+
+
+
+
+
+		</div>
+	</form>
+</body>
+</html>

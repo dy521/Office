@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper   
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.office.mapper.EmpMapper">
+
+
+
+	<!--根据username和password查询用户 -->
+	<select id="findAdminByNameAndPwd" parameterType="String"
+		resultType="emp">
+		SELECT
+		*
+		FROM emp
+		where username = #{username} and password =
+		#{password} and type = #{type}
+	</select>
+
+
+	<!--List<Emp> findList(Emp emp); -->
+	<select id="findList" parameterType="emp" resultType="emp">
+		SELECT
+		a.*,b.name as deptname
+		FROM emp a,dept b where a.deptid=b.id
+		<if test="name !=null and name != ''">
+			and a.name like '%${name}%'
+		</if>
+		<if test="type !=null and type != ''">
+			and a.type = #{type}
+		</if>
+	</select>
+
+	<!--Integer delete(@Param("id") Integer id); -->
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM emp WHERE id = #{id}
+	</delete>
+
+	<!--emp findById(@Param("id") Integer id); -->
+	<select id="findById" parameterType="Integer" resultType="emp">
+		SELECT
+		*
+		FROM emp where id=#{id}
+	</select>
+
+
+	<!--Integer insert(emp hotelType); -->
+	<insert id="insert" parameterType="emp">
+		INSERT INTO emp (name,
+		title,
+		deptid,
+		username,
+		password,
+		sex,
+		type
+		)
+		VALUES (#{name},
+		#{title},
+		#{deptid},
+		#{username},
+		#{password},
+		#{sex},
+		#{type}
+		)
+	</insert>
+
+
+
+	<!-- Integer update(lend hotelType); -->
+	<update id="update" parameterType="emp">
+		UPDATE emp
+		<set>
+			<if test="name != null">name=#{name},</if>
+			<if test="title != null">title=#{title},</if>
+			<if test="deptid != null">deptid=#{deptid},</if>
+			<if test="username != null">username=#{username},</if>
+			<if test="password != null">password=#{password},</if>
+			<if test="sex != null">sex=#{sex},</if>
+			<if test="type != null">type=#{type}</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+
+
+
+</mapper>
